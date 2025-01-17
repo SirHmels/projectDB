@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .wrapper {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            max-width: 1000px;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #212529;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .link {
+            display: block;
+            margin: 40px auto;
+            text-align: center;
+            font-size: 18px;
+            color: #212529;
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .form-container-wrapper {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-top: 3px;
+            position: relative;
+        }
+
+        .form-container {
+            width: 280px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #212529;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #212529;
+        }
+
+        .cancel-btn {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .cancel-btn:hover {
+            background-color: #e53935;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            background-color: #212529;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            background-color: #212529;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="container">
+        <h1>List of students</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Year of admission</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${Student}">
+                <td th:text="${student.idStudent}"></td>
+                <td th:text="${student.firstname}"></td>
+                <td th:text="${student.lastname}"></td>
+                <td th:text="${student.yearOfAdmission}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/" class="back-btn">Home</a>
+    </div>
+
+    <!-- Плашка добавления студента -->
+    <div class="form-container-wrapper">
+        <div class="form-container">
+            <h2>Add student</h2>
+
+            <!-- Форма добавления студента -->
+            <form id="studentForm" action="/Student" method="post">
+                <input type="text" id="firstname" name="firstname" placeholder="First name" required>
+                <input type="text" id="lastname" name="lastname" placeholder="Last name" required>
+                <input type="text" id="yearOfAdmission" name="yearOfAdmission" placeholder="Year of admission" required>
+                <button type="submit">Save</button>
+            </form>
+
+            <!-- Ошибка для email -->
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
